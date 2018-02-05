@@ -1,0 +1,39 @@
+﻿@model FredericoRibeiro.Prova.Web.ViewModels.ApostaViewModel
+
+@{
+    ViewBag.Title = "Frederico Ribeiro";
+}
+
+<h2>Aposta</h2>
+
+<hr />
+
+<div class="alert alert-info" role="alert">
+    <p>Favor informar cada número da aposta separados por espaço! Exemplo: 1 2 3 4 50 6</p>
+</div>
+
+@using (Html.BeginForm("ApostarNumeros", "Aposta", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Numeros, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Numeros, new { @class = "form-control", maxlength = 30 })
+        </div>
+    </div>
+
+    <hr />
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" class="btn btn-primary" value="Aposta" />
+            <input type="button" class="btn btn-default" value="Surpresinha" onclick="document.location.href='@Url.Action("ApostarSurpresinha", "Aposta")';">
+        </div>
+    </div>
+}
+
+<hr />
+
+@{Html.RenderAction("_Lista", "Aposta");}

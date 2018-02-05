@@ -1,0 +1,6 @@
+D:\Desenvolvimento\ITIX\FredericoRibeiro.Prova.Dominio\bin\Debug\FredericoRibeiro.Prova.Dominio.dll
+D:\Desenvolvimento\ITIX\FredericoRibeiro.Prova.Dominio\bin\Debug\FredericoRibeiro.Prova.Dominio.pdb
+D:\Desenvolvimento\ITIX\FredericoRibeiro.Prova.Dominio\obj\Debug\FredericoRibeiro.Prova.Dominio.csproj.CoreCompileInputs.cache
+D:\Desenvolvimento\ITIX\FredericoRibeiro.Prova.Dominio\obj\Debug\FredericoRibeiro.Prova.Dominio.dll
+D:\Desenvolvimento\ITIX\FredericoRibeiro.Prova.Dominio\obj\Debug\FredericoRibeiro.Prova.Dominio.pdb
+D:\Desenvolvimento\ITIX\FredericoRibeiro.Prova.Dominio\obj\Debug\FredericoRibeiro.Prova.Dominio.csprojResolveAssemblyReference.cache

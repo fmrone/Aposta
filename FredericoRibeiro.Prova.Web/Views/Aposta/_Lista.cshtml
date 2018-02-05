@@ -1,0 +1,85 @@
+﻿@model IEnumerable<FredericoRibeiro.Prova.Dominio.Aposta>
+
+<p>
+    <input type="button" class="btn btn-default" value="Sortear" onclick="document.location.href='@Url.Action("Sortear", "Aposta")';">
+    @{ 
+        var numeros = string.Empty;
+
+        if (TempData["numerosSorteados"] != null)
+        {
+            TempData.Keep("numerosSorteados");
+
+            var numerosSorteados = TempData["numerosSorteados"] as List<byte>;
+
+            foreach (var numero in numerosSorteados)
+            {
+                numeros += string.Format(" {0} ", numero);
+            }
+        }
+     }
+
+     @if (!string.IsNullOrEmpty(numeros))
+     {
+        <span class="label label-warning">@numeros</span>
+     }
+</p>
+
+<table class="table table-bordered table-hover">
+    <tr>
+        <th>Identificador</th>
+        <th>Data</th>
+        <th>Números</th>
+        <th>Acertos</th>
+    </tr>
+    @if (Model.Count() > 0)
+    {
+        @MontaLista(Model);
+    }
+    else
+    {
+        <tr>
+            <td colspan="4" class="warning text-center">Nenhuma aposta foi registrada</td>
+        </tr>
+    }
+</table>
+
+@helper MontaLista(IEnumerable<FredericoRibeiro.Prova.Dominio.Aposta> lista)
+{
+    foreach (var item in lista)
+    {
+        var numeros = string.Empty;
+        foreach (var numero in item.Numeros)
+        {
+            numeros += string.Format(" {0} ", numero);
+        }
+
+        <tr>
+            <td>@item.Identificador</td>
+            <td>@item.Data.ToString("dd/MM/yyyy")</td>
+            <td>@numeros</td>
+            <td align="center">
+
+                @{
+                    var acertos = string.Empty;
+                    if (TempData["numerosSorteados"] != null)
+                    {
+                        TempData.Keep("numerosSorteados");
+
+                        var numerosSorteados = TempData["numerosSorteados"] as List<byte>;
+
+                        item.Apura(item.Numeros.ToList(), numerosSorteados);
+                        acertos = item.Acertos.ToString();
+                    }
+                }
+
+                @acertos
+            </td>
+        </tr>
+    }
+
+    if (TempData["numerosSorteados"] != null)
+    {
+        TempData.Remove("apostas");
+        TempData.Remove("numerosSorteados");
+    }
+}
